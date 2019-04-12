@@ -82,7 +82,7 @@ public class EnrollmentController {
         return null;
     }
 
-    public EnrollResponse acknowledge(@RequestBody AcknowledgeRequest _request){
+    public EnrollResponse acknowledge(@RequestBody AcknowledgeRequest request){
         return null;
     }
 

@@ -15,6 +15,7 @@ import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.crypto.signers.ECDSASigner;
 import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPublicKey;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.util.Arrays;
 import org.slf4j.Logger;
@@ -55,6 +56,10 @@ public class KeyGenerator {
 
     protected static final String EXCEPTION_MESSAGE_UNLIKELY = "This is rather unlikely, but it did just happen";
     protected static final String EXCEPTION_MESSAGE_NO_PRIVATE_KEY = "Need private key for private generation";
+
+    static{
+        Security.addProvider(new BouncyCastleProvider());
+    }
 
     public KeyGenerator(X9ECParameters CURVE_PARAMS, String seed) {
         this.SEED_PREFIX = seed.getBytes();

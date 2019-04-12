@@ -75,6 +75,16 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.jboss.aerogear</groupId>
+			<artifactId>aerogear-otp-java</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.codahale</groupId>
+			<artifactId>shamir</artifactId>
+			<version>0.7.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

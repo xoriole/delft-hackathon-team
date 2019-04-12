@@ -22,6 +22,24 @@ public class CryptoService {
         return this.keyGenerator.createExtendedKey();
     }
 
+    public KeyGenerator.ExtendedKey fromXPriv(String xpriv){
+        try {
+            return this.keyGenerator.parseExtendedKey(xpriv);
+        } catch (KeyValidationException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public KeyGenerator.ExtendedKey fromXPub(String xpub){
+        try {
+            return this.keyGenerator.parseExtendedKey(xpub);
+        } catch (KeyValidationException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public KeyGenerator.ECKeyPair getKey(String xpub, int index){
         try {
             KeyGenerator.ExtendedKey extendedKey = this.keyGenerator.parseExtendedKey(xpub);
