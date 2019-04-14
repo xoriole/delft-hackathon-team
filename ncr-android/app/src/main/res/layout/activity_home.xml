@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_padding">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/address_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="Address" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/balance_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="Balance" />
+
+            <CheckBox
+                android:id="@+id/enabled_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enabled" />
+
+            <CheckBox
+                android:id="@+id/verified_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Verified" />
+
+            <android.support.v7.widget.AppCompatButton
+                style="@style/primary_button"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:id="@+id/send_ncr_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Send NCR" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

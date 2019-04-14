@@ -1,0 +1,74 @@
+<resources>
+    <dimen name="horizontal_margin">16dp</dimen>
+    <dimen name="vertical_margin">16dp</dimen>
+    <dimen name="activity_padding">16dp</dimen>
+
+    <dimen name="text_headline">24sp</dimen>
+    <dimen name="text_large_title">22sp</dimen>
+    <dimen name="text_title">20sp</dimen>
+    <dimen name="text_large_body">18sp</dimen>
+    <dimen name="text_body">16sp</dimen>
+    <dimen name="text_small_body">14sp</dimen>
+    <dimen name="text_tiny">11sp</dimen>
+
+    <!--Tabs-->
+    <dimen name="tab_max_width">264dp</dimen>
+    <dimen name="tab_padding_bottom">16dp</dimen>
+    <dimen name="tab_label">14sp</dimen>
+    <dimen name="tab_min_width">96dp</dimen>
+    <dimen name="custom_tab_layout_height">70dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">150dp</dimen>
+
+    <!--Lollipin-->
+    <dimen name="keyboard_button_text_size">30sp</dimen>
+    <dimen name="keyboard_button_padding">15dp</dimen>
+    <dimen name="keyboard_button_ripple_padding">30dp</dimen>
+    <dimen name="pin_code_round_size">25dp</dimen>
+    <dimen name="pin_code_round_margin">10dp</dimen>
+    <dimen name="light_gray_bar_margin_top">20dp</dimen>
+    <dimen name="light_gray_bar_margin_bottom">5dp</dimen>
+    <dimen name="light_gray_bar_margin_sides">50dp</dimen>
+    <dimen name="pin_code_forgot_text_size">16sp</dimen>
+    <dimen name="pin_code_step_text_size">20sp</dimen>
+    <dimen name="pin_code_elements_margin">20dp</dimen>
+    <dimen name="activity_pin_code_padding">20dp</dimen>
+    <dimen name="pin_code_logo_margin">30dp</dimen>
+    <dimen name="pin_code_round_top_margin">10dp</dimen>
+
+    <!-- font sizes -->
+    <dimen name="font_h1">40sp</dimen>
+    <dimen name="font_h2">32sp</dimen>
+    <dimen name="font_h3">24sp</dimen>
+    <dimen name="font_larger">20sp</dimen>
+    <dimen name="font_large">16sp</dimen>
+    <dimen name="font_normal">20sp</dimen>
+    <dimen name="font_small">11sp</dimen>
+
+    <!-- spacing between two views -->
+    <dimen name="spacing_very_huge">54dp</dimen>
+    <dimen name="spacing_huge">36dp</dimen>
+    <dimen name="spacing_large">20dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_normal">12dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_tiny">8dp</dimen>
+    <dimen name="spacing_tiniest">1dp</dimen>
+
+    <!-- sizes of buttons -->
+    <dimen name="button_height_tall">44dp</dimen>
+    <dimen name="button_height_medium">32dp</dimen>
+    <dimen name="button_height_normal">28dp</dimen>
+    <dimen name="button_height_short">25dp</dimen>
+    <dimen name="button_height_tiny">20dp</dimen>
+
+    <dimen name="button_width_normal">120dp</dimen>
+    <dimen name="button_width_small">80dp</dimen>
+    <integer name="weight_sum">12</integer>
+</resources>

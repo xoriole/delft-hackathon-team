@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/share_emoji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="🔥"
+        android:textAppearance="@style/emoji"
+        android:gravity="top"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/shareId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="77dp"
+        android:layout_alignParentTop="true"
+        android:text="Share 1"
+        android:textAppearance="@style/description_text"
+    />
+
+    <Button
+        android:id="@+id/share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="250dp"
+        android:layout_alignParentTop="true"
+        android:text="SHARE"
+        android:textColor="#FFFFFF"
+        android:textSize="12dp"
+        android:background="@drawable/rectangle_grey"
+        android:alpha="1.0"
+        />
+
+</RelativeLayout>
+

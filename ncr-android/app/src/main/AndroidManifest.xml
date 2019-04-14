@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.sofaid.app">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.screen.portrait" />
+
+    <application
+        android:name="com.github.sofaid.app.NcrApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Sofa.ID"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.github.sofaid.app.ui.dashboard.DashboardActivity"
+            android:label="NCR">
+        </activity>
+        <activity
+            android:name="com.github.sofaid.app.ui.barcode.BarcodeCaptureActivity"
+            android:label="Scan QR Code"></activity>
+        <activity
+            android:name="com.github.sofaid.app.ui.signup.SignupActivity"
+            android:label="Create Account"></activity>
+        <activity
+            android:name="com.github.sofaid.app.ui.signup_seedwords.SignupSeedWordsActivity"
+            android:label="Seed words" />
+        <activity android:name="com.github.sofaid.app.ui.shares_activities.CreateSharesActivity"
+            android:label="Create shares"/>
+        <activity
+            android:name="com.github.sofaid.app.ui.home.HomeActivity"
+            android:label="Welcome" />
+        <activity
+            android:name="com.github.sofaid.app.ui.send_ncr.SendNcrActivity"
+            android:label="Send NCR"></activity>
+        <activity android:name=".ui.messages.EnrolledActivity" />
+        <activity android:name=".ui.shares_activities.ShareCollectActivity" />
+        <activity android:name=".ui.shares_activities.ShareCoordinatorActivity" />
+        <activity android:name=".ui.shares_activities.ViewShareActivity" />
+        <activity android:name=".ui.messages.IntroActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

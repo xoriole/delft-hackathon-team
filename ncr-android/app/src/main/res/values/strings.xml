@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Sofa.ID</string>
+    <string name="activity_signup_title">Create Account</string>
+    <!-- Should be same as values in Gender enum -->
+    <string-array name="genders">
+        <item>Unspecified</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+    <string name="seed_words_message">Please note down the following seed words. If you ever need to recover your account, you will have to enter these set of words. Make sure no one else has access to these seed words!</string>
+    <!-- Should be same as values in AccountIdType enum-->
+    <string-array name="account_id_types">
+        <item>Username</item>
+        <item>Email</item>
+        <item>Mobile Phone</item>
+        <item>NCR Address</item>
+    </string-array>
+
+    <string name="sofa_id">SOFA.ID</string>
+    <string name="the_very_fi"> The very first blockchain id</string>
+    <string name="action_settings"> Settings</string>
+    <string name="my_last_tra">My last transactions</string>
+    <string name="all_in">ALL IN</string>
+    <string name="no_camera_permission">No camera permission</string>
+    <string name="ok">OK</string>
+    <string name="low_storage_error">Low storage on device</string>
+    <string name="permission_camera_rationale">Camer permission</string>
+    <string name="barcode_success">QR success</string>
+    <string name="barcode_failure">No qr code captured</string>
+    <string name="barcode_error">Error scanning QR code: %s</string>
+    <string name="barcode_header">Status message</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_attestations">Attestations</string>
+    <string name="title_history">Shares</string>
+    <!--<string name="demo_app_key">xprv9s21ZrQH143K3RhCf8ZuLMzpRsxbrHtNnES5JnWHtUgGH9Q2ePij4vAkoBNWqBeS8zHEnKrzzd8j5sei3vmYJd9wbMJGeiQ3tV5uxgwf3uE</string>-->
+    <string name="demo_app_key">xprv9s21ZrQH143K2y6F6fVb7PjEV4StSTTgYYgmyAKEUVbUJpUpxEhvtscXf4f867AmWhynfiZd5JTobGgRoJQFQB2Faar3R5cu9sYTGZ4qSkd</string>
+    <!--<string name="demo_app_key">xprv9s21ZrQH143K43HC3H44hh7RUAMLZnPhsprGGZsrfZtLjyyz9jTgdASy6CNTNVmRTSaJfStVfgwupN7JM6VMMvy2kTKztg6r6UkMSBTtrYC</string>-->
+
+</resources>

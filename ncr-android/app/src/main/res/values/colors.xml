@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#717DDB</color>
+    <color name="primary_dark">#474EBB</color>
+    <color name="primary_light">#7582DF</color>
+    <color name="accent">#536DFE</color>
+    <color name="danger">#ef1616</color>
+    <color name="primary_text">#212121</color>
+    <color name="primary_text_inverted">#FFFFFF</color>
+    <color name="secondary_text">#757575</color>
+    <color name="secondary_text_light">#9b9b9b</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+</resources>
