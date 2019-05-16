@@ -18,7 +18,7 @@ package com.github.sofaid.app.secrets;
 
 import java.security.SecureRandom;
 
-import static java.lang.Byte.toUnsignedInt;
+//import static java.lang.Byte.toUnsignedInt;
 
 /**
  * An implementation of polynomials over {@code GF(256)}. Uses the same field polynomial ({@code
@@ -30,6 +30,10 @@ import static java.lang.Byte.toUnsignedInt;
 class GF256 {
     private GF256() {
         // a singleton
+    }
+
+    static int toUnsignedInt(byte b){
+        return ((int) b) & 0xFF;
     }
 
     private static final byte[] LOG = {

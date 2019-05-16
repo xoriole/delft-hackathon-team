@@ -4,8 +4,8 @@ apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.ncr.android.app"
-        minSdkVersion 26
+        applicationId "com.github.sofaid.app"
+        minSdkVersion 25
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"

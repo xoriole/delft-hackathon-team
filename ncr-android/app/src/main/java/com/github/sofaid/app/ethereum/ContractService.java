@@ -20,7 +20,8 @@ public class ContractService {
     static final BigInteger GAS_LIMIT = BigInteger.valueOf(4_300_000);
     static final BigInteger INITIAL_WEI_VALUE = BigInteger.valueOf(4_300_000);
 
-    static final String CONTRACT_ADDRESS = "0x05418b77db326a0286c61023f6d71a80d3592de3"; // ganache
+//    static final String CONTRACT_ADDRESS = "0x05418b77db326a0286c61023f6d71a80d3592de3"; // ganache
+    static final String CONTRACT_ADDRESS = "0x824d5d5b46f92094eaadb708a3ba350c56fa415d"; // ganache
 //    static final String CONTRACT_ADDRESS = "0x7780c86cBE38B63730EB2E5Bd5109327170FF126";
     static final String WEB3_URL = "https://ganache.offlinepass.com";
 //    static final String WEB3_URL = "https://ropsten.infura.io/v3/b8c6bd5ce2da4453bf3bda071d2baa1a";
