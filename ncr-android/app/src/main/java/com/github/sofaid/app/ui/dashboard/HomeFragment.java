@@ -1,6 +1,7 @@
 package com.github.sofaid.app.ui.dashboard;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -13,16 +14,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.sofaid.app.R;
-import com.github.sofaid.app.crypto.ByteUtils;
 import com.github.sofaid.app.crypto.KeyGenerator;
+import com.github.sofaid.app.ethereum.ContractService;
 import com.github.sofaid.app.helpers.PreferencesHelper;
 import com.github.sofaid.app.secrets.Scheme;
 import com.github.sofaid.app.utils.ImageUtil;
 
 import org.jboss.aerogear.security.otp.Totp;
 import org.web3j.crypto.Credentials;
-import org.web3j.crypto.Hash;
+import org.web3j.protocol.core.methods.response.EthGetBalance;
 
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Map;
@@ -57,11 +59,19 @@ public class HomeFragment extends Fragment {
     private KeyGenerator.ExtendedKey masterKey;
     private PreferencesHelper preferencesHelper;
     private Totp totp;
+    private ContractService contractService;
 
-    public static HomeFragment newInstance(PreferencesHelper preferencesHelper) {
+    private String walletAddress="";
+
+    public static HomeFragment newInstance(PreferencesHelper preferencesHelper, ContractService contractService) {
         HomeFragment fragment = new  HomeFragment();
         fragment.setPreferencesHelper(preferencesHelper);
+        fragment.setContractService(contractService);
         return fragment;
+    }
+
+    private void setContractService(ContractService contractService) {
+        this.contractService = contractService;
     }
 
     public void setPreferencesHelper(PreferencesHelper preferencesHelper){
@@ -74,7 +84,7 @@ public class HomeFragment extends Fragment {
         @Override
         public void run() {
             updateOtpCode();
-            mBsnTextView.setText("BSN: " + preferencesHelper.getBSN());
+            mBsnTextView.setText(preferencesHelper.getBSN());
             timerHandler.postDelayed(this, 500);
         }
     };
@@ -92,7 +102,7 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-        masterKey = ((DashboardActivity)getActivity()).getMasterKey();
+
         // TODO: Use the ViewModel
         String userId = "something here";
 //        setupQrCode(userId);
@@ -100,13 +110,33 @@ public class HomeFragment extends Fragment {
         mPublicKeyTextView = (TextView) view.findViewById(R.id.tv_public_key);
         mBsnTextView = (TextView) view.findViewById(R.id.tv_bsn);
         mOtpTextView = (TextView) view.findViewById(R.id.tv_otp);
+        updateIdentity();
 
-//        String publickey = ByteUtils.toHex(masterKey.getMaster().getAddress());
-        String address = Credentials.create(masterKey.getMaster().getPrivateKey().toString(16)).getAddress();
-        mIdQrCodeImageView.setImageBitmap(ImageUtil.qrCodeLarge("sofaid://"+address));
-        mPublicKeyTextView.setText(address);
-
+        mPublicKeyTextView.setOnClickListener(v -> {
+            this.shareAddress(walletAddress);
+        });
         testShamir();
+    }
+
+    public void updateIdentity(){
+        masterKey = ((DashboardActivity)getActivity()).getMasterKey();
+        //        String publickey = ByteUtils.toHex(masterKey.getMaster().getAddress());
+        walletAddress = Credentials.create(masterKey.getMaster().getPrivateKey().toString(16)).getAddress();
+        mIdQrCodeImageView.setImageBitmap(ImageUtil.qrCodeLarge("sofaid://"+walletAddress));
+        mPublicKeyTextView.setText(walletAddress);
+    }
+
+    private void shareAddress(String address) {
+        Intent share = new Intent(android.content.Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+        // Add data to the intent, the receiving app will decide
+        // what to do with it.
+        share.putExtra(Intent.EXTRA_SUBJECT, "Sofa ID");
+        share.putExtra(Intent.EXTRA_TEXT, address);
+
+        startActivity(Intent.createChooser(share, "Share Identity Address"));
     }
 
     @Override
@@ -122,16 +152,18 @@ public class HomeFragment extends Fragment {
     }
 
     public void updateBsn(){
-        mBsnTextView.setText("BSN:" + preferencesHelper.getBSN());
+        mBsnTextView.setText(preferencesHelper.getBSN());
     }
 
     public void updateOtpCode(){
         String otpSecret = preferencesHelper.getOtpSecret();
         if(!otpSecret.isEmpty()){
             Totp totp = new Totp(otpSecret);
-            mOtpTextView.setText("OTP: " + totp.now());
+            mOtpTextView.setText(totp.now());
         }
     }
+
+
 
     public void testShamir(){
         final Scheme scheme = new Scheme(new SecureRandom(), 5, 3);

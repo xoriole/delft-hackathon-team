@@ -8,4 +8,9 @@ import lombok.Data;
 public class Attestation {
     String address;
     boolean attested;
+//
+//    public Attestation(String address, boolean b) {
+//        this.address = address;
+//        this.attested = b;
+//    }
 }

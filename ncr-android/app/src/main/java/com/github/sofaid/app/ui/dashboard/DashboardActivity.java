@@ -37,6 +37,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import org.jboss.aerogear.security.otp.Totp;
 import org.web3j.crypto.Credentials;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,7 +51,8 @@ import rx.schedulers.Schedulers;
 
 public class DashboardActivity extends BaseActivity {
     private static final int RC_BARCODE_CAPTURE = 9001;
-    private static final String TAG = "BarcodeMain";
+    private static final int RC_MASTER_KEY_CAPTURE = 9002;
+    private static final String TAG = "DashboardActivity";
 
     private TextView statusMessage;
     private TextView barcodeValue;
@@ -109,17 +111,44 @@ public class DashboardActivity extends BaseActivity {
         toolbar.setTitle(" Sofa.ID ");
         setSupportActionBar(toolbar);
 
+        cryptoService = new CryptoService();
+        initKeys();
+
         // initialize the fragments as well
         initFragments();
         loadFragment(homeFragment);
 //        ping();
 //        testContract();
-        setupMsk();
+//        setupMsk();
     }
 
     public void setupMsk(){
         String msk = getResources().getString(R.string.demo_app_key);
-        cryptoService = new CryptoService();
+        this.initializeMasterKey(msk);
+    }
+
+    public void initKeys(){
+        String msk = preferencesHelper.getMsk();
+        if(msk.isEmpty()){
+            masterKey = cryptoService.generateMasterKeyPair();
+            msk = masterKey.serialize(true);
+            preferencesHelper.saveMsk(msk);
+        }else{
+            masterKey = cryptoService.fromXPriv(msk);
+        }
+        Credentials credentials = Credentials.create(masterKey.getMaster().getPrivateKey().toString(16));
+        this.contractService.initContract(credentials);
+    }
+
+    public void createNewIdentity(){
+        masterKey = cryptoService.generateMasterKeyPair();
+        String msk = masterKey.serialize(true);
+        preferencesHelper.saveMsk(msk);
+        Credentials credentials = Credentials.create(masterKey.getMaster().getPrivateKey().toString(16));
+        this.contractService.initContract(credentials);
+    }
+
+    public void initializeMasterKey(String msk){
         masterKey = cryptoService.fromXPriv(msk);
         this.preferencesHelper.saveMsk(msk);
         Credentials credentials = Credentials.create(masterKey.getMaster().getPrivateKey().toString(16));
@@ -149,7 +178,7 @@ public class DashboardActivity extends BaseActivity {
     }
 
     protected void initFragments(){
-        homeFragment = HomeFragment.newInstance(this.preferencesHelper);
+        homeFragment = HomeFragment.newInstance(this.preferencesHelper, this.contractService);
         attestationFragment = AttestationFragment.newInstance(this.contractService);
         historyFragment = new HistoryFragment();
     }
@@ -180,9 +209,25 @@ public class DashboardActivity extends BaseActivity {
             case R.id.action_bsn:
                 inputBSN();
                 break;
-            case R.id.action_settings:
+            case R.id.action_refresh_id:
                 Toast.makeText(DashboardActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                this.createNewIdentity();
+                this.loadFragment(homeFragment);
+                homeFragment.updateIdentity();
                 break;
+            case R.id.action_setup_msk:
+                Intent masterKeyIntent = new Intent(DashboardActivity.this,
+                        BarcodeCaptureActivity.class);
+                masterKeyIntent.putExtra(BarcodeCaptureActivity.AutoFocus, autoFocus);
+                masterKeyIntent.putExtra(BarcodeCaptureActivity.UseFlash, useFlash);
+                startActivityForResult(masterKeyIntent, RC_MASTER_KEY_CAPTURE);
+                break;
+            case R.id.action_balance:
+                BigDecimal balance = this.contractService.getBalance();
+                String text = String.format("Balance: %.3f", balance);
+                Toast.makeText(DashboardActivity.this, text, Toast.LENGTH_SHORT).show();
+                break;
+
 
         }
         return super.onOptionsItemSelected(item);
@@ -228,6 +273,17 @@ public class DashboardActivity extends BaseActivity {
 //                    statusMessage.setText(R.string.barcode_failure);
                     Log.d(TAG, "No barcode captured, intent data is null");
                     Toast.makeText(DashboardActivity.this,"Failed", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                statusMessage.setText(String.format(getString(R.string.barcode_error),
+                        CommonStatusCodes.getStatusCodeString(resultCode)));
+            }
+        } else if (requestCode == RC_MASTER_KEY_CAPTURE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                    this.initializeMasterKey(barcode.displayValue);
+                    Toast.makeText(DashboardActivity.this,"Initialized new master key", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 statusMessage.setText(String.format(getString(R.string.barcode_error),

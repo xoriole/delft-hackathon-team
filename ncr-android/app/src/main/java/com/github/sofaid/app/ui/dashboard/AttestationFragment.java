@@ -68,10 +68,12 @@ public class AttestationFragment extends Fragment {
     }
 
     public void fetchFromBlockchain(){
+        System.out.println("Fetch attestation from blockchain");
         if(contractService==null)
             return;
         List<Attestation> attestation = new ArrayList<>();
-        contractService.getAttestations(contractService.getCredentials().getAddress()).subscribeOn(Schedulers.io())
+        String address = contractService.getCredentials().getAddress();
+        contractService.getAttestations(address).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List>() {
                     @Override
@@ -89,6 +91,7 @@ public class AttestationFragment extends Fragment {
                     public void onNext(List list) {
                         System.out.println("List:"+list);
                         for(String address: (List<String>) list){
+                            System.out.println("received attestation:"+ address);
                             attestation.add(new Attestation(address, true));
                         }
                     }

@@ -15,6 +15,7 @@ public class PreferencesHelper {
     private static final String PREF_NCR_ADDRESS = "NCR_ADDRESS";
     private static final String PREF_USER_PRIVATE_KEY = "USER_PRIVATE_KEY";
     private static final String PREF_ACTIVITY_TO_SHOW_ON_LAUNCH = "ACTIVITY_TO_SHOW_ON_LAUNCH";
+    private static final String PREF_MSK_SEED = "PREF_MSK_SEED";
     private static final String PREF_MSK = "PREF_MSK";
     private static final String PREF_BSN = "PREF_BSN";
     private static final String PREF_OTP_SECRET = "PREF_OTP_SECRET";
@@ -79,6 +80,14 @@ public class PreferencesHelper {
 
     public String getMsk() {
         return this.sharedPreferences.getString(PREF_MSK, "");
+    }
+
+    public void saveMskSeed(String msk) {
+        this.sharedPreferences.edit().putString(PREF_MSK_SEED, msk).commit();
+    }
+
+    public String getMskSeed() {
+        return this.sharedPreferences.getString(PREF_MSK_SEED, "");
     }
 
 }

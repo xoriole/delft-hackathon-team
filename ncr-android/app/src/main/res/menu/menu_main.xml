@@ -1,8 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.myapplication.MainActivity">
+    tools:context="com.github.sofaid.app.ui.dashboard.DashboardActivity">
 
+    <item
+        android:id="@+id/action_setup_msk"
+        android:orderInCategory="102"
+        android:title="Setup Master Key"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_setup_login_server"
+        android:orderInCategory="102"
+        android:title="Setup Login Server"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_scan"
         android:icon="@android:drawable/ic_menu_camera"
@@ -17,8 +28,14 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_refresh_id"
         android:orderInCategory="102"
-        android:title="Settings"
+        android:title="Refresh Identity"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_balance"
+        android:orderInCategory="102"
+        android:title="View Balance"
         app:showAsAction="never" />
 </menu>

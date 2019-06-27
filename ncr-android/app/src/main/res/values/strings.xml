@@ -34,8 +34,9 @@
     <string name="title_home">Home</string>
     <string name="title_attestations">Attestations</string>
     <string name="title_history">Shares</string>
-    <string name="demo_app_key">xprv9s21ZrQH143K3RhCf8ZuLMzpRsxbrHtNnES5JnWHtUgGH9Q2ePij4vAkoBNWqBeS8zHEnKrzzd8j5sei3vmYJd9wbMJGeiQ3tV5uxgwf3uE</string>
+    <!--<string name="demo_app_key">xprv9s21ZrQH143K3RhCf8ZuLMzpRsxbrHtNnES5JnWHtUgGH9Q2ePij4vAkoBNWqBeS8zHEnKrzzd8j5sei3vmYJd9wbMJGeiQ3tV5uxgwf3uE</string>-->
     <!--<string name="demo_app_key">xprv9s21ZrQH143K2y6F6fVb7PjEV4StSTTgYYgmyAKEUVbUJpUpxEhvtscXf4f867AmWhynfiZd5JTobGgRoJQFQB2Faar3R5cu9sYTGZ4qSkd</string>-->
     <!--<string name="demo_app_key">xprv9s21ZrQH143K43HC3H44hh7RUAMLZnPhsprGGZsrfZtLjyyz9jTgdASy6CNTNVmRTSaJfStVfgwupN7JM6VMMvy2kTKztg6r6UkMSBTtrYC</string>-->
+    <string name="demo_app_key">xprv9s21ZrQH143K3PubUxYB5ZHLyAxzt2F4jBUYtXaNVBTd5dxmMfzw4EmzgVxWbvJ68dsHM38vYKzwDuVWzY2miVt7xcydhNCUHY4JqC1MGHZ</string>
 
 </resources>

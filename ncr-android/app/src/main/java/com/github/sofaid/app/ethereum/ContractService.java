@@ -2,12 +2,17 @@ package com.github.sofaid.app.ethereum;
 
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.RemoteCall;
+import org.web3j.protocol.core.methods.response.EthGetBalance;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
+import org.web3j.utils.Convert;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import java8.util.concurrent.CompletableFuture;
 import java8.util.function.Consumer;
@@ -21,9 +26,12 @@ public class ContractService {
     static final BigInteger INITIAL_WEI_VALUE = BigInteger.valueOf(4_300_000);
 
 //    static final String CONTRACT_ADDRESS = "0x05418b77db326a0286c61023f6d71a80d3592de3"; // ganache
-    static final String CONTRACT_ADDRESS = "0x824d5d5b46f92094eaadb708a3ba350c56fa415d"; // ganache
+//    static final String CONTRACT_ADDRESS = "0x824d5d5b46f92094eaadb708a3ba350c56fa415d"; // ganache
+//    static final String CONTRACT_ADDRESS = "0xee9c644ad94f5785797d561ad984e7a9905269e9"; // rinkeby
+    static final String CONTRACT_ADDRESS = "0xad5fc729aa1bebea0adab4b38fe2dc3453fbcfbd"; // ganache - june 27
 //    static final String CONTRACT_ADDRESS = "0x7780c86cBE38B63730EB2E5Bd5109327170FF126";
     static final String WEB3_URL = "https://ganache.offlinepass.com";
+//    static final String WEB3_URL = "http://node.crypteli.com:9998";
 //    static final String WEB3_URL = "https://ropsten.infura.io/v3/b8c6bd5ce2da4453bf3bda071d2baa1a";
     //    static final String PRIVATE_KEY = "6d333c75332974e7d7fb90fcff68629feafc1edb40c1a8f25e555ed5fc4523fc";
     static final String PRIVATE_KEY = "29041e47bf115e3ec9685ced4d46c1ee914f528955be3f01f9e51077e824b260";
@@ -62,6 +70,28 @@ public class ContractService {
 
     public Credentials getCredentials(){
         return credentials;
+    }
+
+    public BigDecimal getBalance(){
+        return getBalance(credentials.getAddress());
+    }
+
+    public BigDecimal getBalance(String address){
+        EthGetBalance ethGetBalance = null;
+        try {
+            ethGetBalance = web3j
+                    .ethGetBalance(address, DefaultBlockParameterName.LATEST)
+                    .sendAsync()
+                    .get();
+
+            return Convert.fromWei(ethGetBalance.getBalance().toString(), Convert.Unit.ETHER);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return BigDecimal.ZERO;
+
     }
 
     public Observable<List> getAttestations(String address){
